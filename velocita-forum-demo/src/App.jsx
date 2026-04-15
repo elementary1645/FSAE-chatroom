@@ -1,7 +1,19 @@
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import SubsystemPage from "./pages/SubsystemPage.jsx";
+import QuestionPage from "./pages/QuestionPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
+
 export default function App() {
   return (
-    <div style={{ padding: "40px", fontSize: "32px", color: "red" }}>
-      APP FILE IS WORKING
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="subsystem/:subsystemSlug" element={<SubsystemPage />} />
+        <Route path="question/:questionId" element={<QuestionPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }
