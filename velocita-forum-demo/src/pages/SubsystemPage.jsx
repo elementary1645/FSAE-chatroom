@@ -1,6 +1,10 @@
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { questions, subsystems } from "../data/forumData";
+import {
+  questions,
+  subsystems,
+  subsystemDescriptions,
+} from "../data/forumData";
 import QuestionCard from "../components/QuestionCard";
 
 export default function SubsystemPage() {
@@ -16,14 +20,32 @@ export default function SubsystemPage() {
     return <div className="empty-state">Subsystem not found.</div>;
   }
 
+  const totalVotes = filteredQuestions.reduce((sum, q) => sum + q.votes, 0);
+  const totalViews = filteredQuestions.reduce((sum, q) => sum + q.views, 0);
+
   return (
     <div>
       <div className="page-header page-header-stack">
         <div className="eyebrow">Subsystem</div>
         <h1>{subsystem.name}</h1>
         <p className="subsystem-description">
-          Showing all questions related to {subsystem.name}.
+          {subsystemDescriptions[subsystemSlug]}
         </p>
+      </div>
+
+      <div className="subsystem-stats">
+        <div className="subsystem-stat-box">
+          <h3>{filteredQuestions.length}</h3>
+          <p>Questions</p>
+        </div>
+        <div className="subsystem-stat-box">
+          <h3>{totalVotes}</h3>
+          <p>Total Votes</p>
+        </div>
+        <div className="subsystem-stat-box">
+          <h3>{totalViews}</h3>
+          <p>Total Views</p>
+        </div>
       </div>
 
       <div className="question-list">
@@ -32,7 +54,9 @@ export default function SubsystemPage() {
             <QuestionCard key={question.id} question={question} />
           ))
         ) : (
-          <div className="empty-state">No posts available in this subsystem yet.</div>
+          <div className="empty-state">
+            No posts available in this subsystem yet.
+          </div>
         )}
       </div>
     </div>

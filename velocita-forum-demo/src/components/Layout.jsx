@@ -1,21 +1,14 @@
-import { Outlet } from "react-router-dom";
 import Header from "./Header.jsx";
 import Sidebar from "./Sidebar.jsx";
 
-export default function Layout() {
+export default function Layout({ children }) {
   return (
-    <div style={{ minHeight: "100vh", background: "#050505", color: "white" }}>
+    <div style={{ minHeight: "100vh", background: "black", color: "white" }}>
       <Header />
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "280px 1fr",
-          minHeight: "calc(100vh - 73px)",
-        }}
-      >
+      <div style={{ display: "grid", gridTemplateColumns: "280px 1fr" }}>
         <Sidebar />
-        <main style={{ padding: "28px" }}>
-          <Outlet />
+        <main style={{ padding: "40px" }}>
+          {children}
         </main>
       </div>
     </div>

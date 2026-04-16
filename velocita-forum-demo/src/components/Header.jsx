@@ -1,16 +1,19 @@
 import { Search } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
     <header className="topbar">
       <div className="brand">Velocita</div>
+
       <nav className="topnav">
-        <a href="#">Questions</a>
-        <a href="#">Tags</a>
-        <a href="#">Subsystems</a>
-        <a href="#">Members</a>
-        <a href="#">Rules DB</a>
+        <NavLink to="/">Questions</NavLink>
+        <NavLink to="/tags">Tags</NavLink>
+        <NavLink to="/subsystem/chassis">Subsystems</NavLink>
+        <NavLink to="/members">Members</NavLink>
+        <NavLink to="/rules">Rules DB</NavLink>
       </nav>
+
       <div className="search-box">
         <Search size={16} />
         <input type="text" placeholder="Search knowledge base..." />
